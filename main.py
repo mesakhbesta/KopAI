@@ -89,7 +89,7 @@ def display_additional_info(kualitas):
     return info.get(kualitas, {})
 
 # Streamlit UI
-st.set_page_config(page_title="KopAI Coffe Classifier", page_icon="☕️")
+st.set_page_config(page_title="KopAI Coffee Classifier", page_icon="☕️")
 
 st.title("KopAI ☕️")
 st.write("Buka kamera terlebih dahulu untuk mengambil gambar atau pilih unggah file untuk mengunggah gambar.")
@@ -110,7 +110,7 @@ if uploaded_file is not None:
         st.error("Peringatan: Gambar yang Anda masukkan bukan kopi.", icon="🚫")
     else:
         # Resize the uploaded image
-        st.image(img, caption='Gambar yang diunggah.', use_column_width='auto', width=300)
+        st.image(img, caption='Gambar yang diunggah.', use_column_width=True)
 
         # Display classification results
         st.header("Hasil Klasifikasi")
@@ -146,27 +146,19 @@ st.sidebar.write("- **Premium**: Kopi dengan kualitas sangat baik, sering dari p
 st.sidebar.write("- **Speciality**: Kopi dengan karakteristik unik dan kualitas tertinggi, terbatas dalam produksi.")
 st.sidebar.write("Pilih gambar untuk memulai klasifikasi dan melihat hasilnya di bagian utama aplikasi.")
 
-# CSS styling
+# CSS styling to ensure camera input and image display scale well on mobile devices
 st.markdown(
     """
     <style>
-    .css-1v7pvcd {
+    .css-1v7pvcd, .css-19t32er, .css-10nvh8h {
         background-color: #f0f0f0;
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .css-10nvh8h {
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .css-19t32er {
-        background-color: #f0f0f0;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .css-1v7pvcd img, .css-19t32er img, .css-10nvh8h img {
+        width: 100%;
+        height: auto;
     }
     </style>
     """,
