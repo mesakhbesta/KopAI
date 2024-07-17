@@ -160,7 +160,23 @@ st.markdown(
         width: 100%;
         height: auto;
     }
+    .stCamera {
+        width: 100% !important;
+        height: auto !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .stCamera > div {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .stButton button {
+        width: 100%;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
+
