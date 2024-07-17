@@ -12,10 +12,10 @@ def load_tflite_model(model_path):
     return interpreter, input_details, output_details
 
 # Load all TensorFlow Lite models for coffee classification
-model_nonkopi, input_details_nonkopi, output_details_nonkopi = load_tflite_model("D:\\ESSAY SATRIA DATA 2024\\MODEL FIXS\\TFLITE\\MODEL TFLITE\\KOPI_NON.tflite")
-model_grade, input_details_grade, output_details_grade = load_tflite_model("D:\\ESSAY SATRIA DATA 2024\\MODEL FIXS\\TFLITE\\MODEL TFLITE\\GRADE.tflite")
-model_kualitas, input_details_kualitas, output_details_kualitas = load_tflite_model("D:\\ESSAY SATRIA DATA 2024\\MODEL FIXS\\TFLITE\\MODEL TFLITE\\KUALITAS.tflite")
-model_proses, input_details_proses, output_details_proses = load_tflite_model("D:\\ESSAY SATRIA DATA 2024\\MODEL FIXS\\TFLITE\\MODEL TFLITE\\PROSES.tflite")
+model_nonkopi, input_details_nonkopi, output_details_nonkopi = load_tflite_model("KOPI_NON.tflite")
+model_grade, input_details_grade, output_details_grade = load_tflite_model("GRADE.tflite")
+model_kualitas, input_details_kualitas, output_details_kualitas = load_tflite_model("KUALITAS.tflite")
+model_proses, input_details_proses, output_details_proses = load_tflite_model("PROSES.tflite")
 
 # Define class names and thresholds
 class_names_nonkopi = ['Non-Kopi', 'Kopi']
