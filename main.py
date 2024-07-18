@@ -4,57 +4,46 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
 
-import streamlit as st
-import base64
+def halaman_utama() : 
 
-def halaman_utama():
-    # Read and encode the image
-    with open('D:/ESSAY SATRIA DATA 2024/STREAMLIT/how-to-tell-if-coffee-beans-are-fresh-1639082215.jpg', 'rb') as image_file:
-        encoded_image = base64.b64encode(image_file.read()).decode()
+    st.write("<h1 class='title'>Optimalkan Rantai Pasok Kopi Anda: Identifikasi, Rekomendasi, dan Pantau Harga dengan Aplikasi Kami</h1>", unsafe_allow_html=True)
 
-    # CSS for the page
-    st.markdown(f"""
-    <style>
-    .title {{
-        color: gray;
-        text-align: center;
-    }}
-    .background {{
-        background-image: url('data:image/jpeg;base64,{encoded_image}');
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+
+    #  CSS untuk membuat tombol rata tengah dan sama besar
+    st.markdown("""
+        <style>
+        .title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: black;
+        }
+        body {
+        background-image: url("https://path-to-your-image.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }}
-    .button-container {{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }}
-    .button-container > div {{
-        margin: 5px;
-    }}
-    .stButton button {{
-        height: 50px;
-        width: 200px;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # HTML for background and title
-    st.markdown('<div class="background"></div>', unsafe_allow_html=True)
-    st.markdown("<h1 class='title'>Optimalkan Rantai Pasok Kopi Anda: Identifikasi, Rekomendasi, dan Pantau Harga dengan Aplikasi Kami</h1>", unsafe_allow_html=True)
-
-    # Adding spacing
-    st.write("")
-    st.write("")
-    st.write("")
-    st.write("")
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button-container > div {
+            margin: 5px;
+        }
+        .stButton button {
+            height: 50px;
+            width: 200px;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
     # Buat kolom untuk menempatkan tombol di tengah
     col1, col2, col3 = st.columns([2, 2, 2]) 
@@ -68,6 +57,7 @@ def halaman_utama():
         st.write("") 
         if st.button("Informasi Mengenai Kopi"):
             st.session_state["halaman"] = "info_kopi"
+
 
 def halaman_tren_harga() :
 
@@ -328,14 +318,15 @@ def halaman_scan_kopi() :
                 st.write(f"**Panduan:** {additional_info.get('panduan', '')}")
 
     # Sidebar information
-    st.sidebar.title("Navigasi")
-    if st.sidebar.button("Halaman Utama"):
-        st.session_state["halaman"] = "utama"
-    if st.sidebar.button("Tren Harga Kopi"):
-        st.session_state["halaman"] = "tren_harga"
-    if st.sidebar.button("Informasi Mengenai Kopi"):
-        st.session_state["halaman"] = "info_kopi"
-        
+    st.sidebar.header("Informasi Kualitas Kopi")
+    st.sidebar.write("Kualitas kopi dipengaruhi oleh beberapa faktor seperti cara pengolahan dan asalnya.")
+    st.sidebar.write("Berikut adalah beberapa jenis kualitas kopi yang umum:")
+    st.sidebar.write("- **Asalan**: Kopi dari berbagai sumber tanpa spesifikasi khusus.")
+    st.sidebar.write("- **Komersil**: Kopi dengan kualitas yang lebih tinggi dan diproduksi secara massal.")
+    st.sidebar.write("- **Premium**: Kopi dengan kualitas sangat baik, sering dari petani terkenal.")
+    st.sidebar.write("- **Speciality**: Kopi dengan karakteristik unik dan kualitas tertinggi, terbatas dalam produksi.")
+    st.sidebar.write("Pilih gambar untuk memulai klasifikasi dan melihat hasilnya di bagian utama aplikasi.")
+
     # CSS styling to ensure camera input and image display scale well on mobile devices
     st.markdown(
         """
