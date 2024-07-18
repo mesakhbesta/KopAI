@@ -5,13 +5,28 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 
 
-# Atur konfigurasi halaman Streamlit
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_page_config(
     page_title="KopAI Coffee Classifier",
     page_icon="☕️",
     layout="wide",
     initial_sidebar_state="expanded"
+)
+
+# Set the theme to light mode directly in the script
+st.write(
+    """
+    <style>
+    :root {
+        --primary-color: #FF4B4B;
+        --background-color: #FFF;
+        --secondary-background-color: #F0F2F6;
+        --text-color: #000;
+        --font: 'sans serif';
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
 # Fungsi untuk halaman utama aplikasi
