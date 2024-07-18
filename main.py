@@ -318,14 +318,15 @@ def halaman_scan_kopi() :
                 st.write(f"**Panduan:** {additional_info.get('panduan', '')}")
 
     # Sidebar information
-    st.sidebar.header("Informasi Kualitas Kopi")
-    st.sidebar.write("Kualitas kopi dipengaruhi oleh beberapa faktor seperti cara pengolahan dan asalnya.")
-    st.sidebar.write("Berikut adalah beberapa jenis kualitas kopi yang umum:")
-    st.sidebar.write("- **Asalan**: Kopi dari berbagai sumber tanpa spesifikasi khusus.")
-    st.sidebar.write("- **Komersil**: Kopi dengan kualitas yang lebih tinggi dan diproduksi secara massal.")
-    st.sidebar.write("- **Premium**: Kopi dengan kualitas sangat baik, sering dari petani terkenal.")
-    st.sidebar.write("- **Speciality**: Kopi dengan karakteristik unik dan kualitas tertinggi, terbatas dalam produksi.")
-    st.sidebar.write("Pilih gambar untuk memulai klasifikasi dan melihat hasilnya di bagian utama aplikasi.")
+    st.sidebar.title("Navigasi")
+    if st.sidebar.button("Halaman Utama"):
+        st.session_state["halaman"] = "utama"
+    if st.sidebar.button("Tren Harga Kopi"):
+        st.session_state["halaman"] = "tren_harga"
+    if st.sidebar.button("Scan Jenis Kopi"):
+        st.session_state["halaman"] = "scan_kopi"
+    if st.sidebar.button("Informasi Mengenai Kopi"):
+        st.session_state["halaman"] = "info_kopi"
 
     # CSS styling to ensure camera input and image display scale well on mobile devices
     st.markdown(
