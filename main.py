@@ -45,7 +45,6 @@ def halaman_utama():
             background-repeat: no-repeat;
             background-attachment: fixed;
             padding: 20px;
-            color: white;
             box-sizing: border-box; /* Include padding in the total width */
         }
         .button-container {
