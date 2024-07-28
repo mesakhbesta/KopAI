@@ -86,8 +86,103 @@ def halaman_utama():
         if st.button("Informasi Mengenai Kopi"):
             st.session_state["halaman"] = "info_kopi"
 
-# Fungsi untuk halaman tren harga kopi
 def halaman_tren_harga():
+    st.sidebar.title("Navigasi")
+    if st.sidebar.button("Halaman Utama"):
+        st.session_state["halaman"] = "utama"
+    if st.sidebar.button("Tren Harga Kopi"):
+        st.session_state["halaman"] = "tren_harga"
+    if st.sidebar.button("Scan Jenis Kopi"):
+        st.session_state["halaman"] = "scan_kopi"
+    if st.sidebar.button("Informasi Mengenai Kopi"):
+        st.session_state["halaman"] = "info_kopi"
+
+    # Inject CSS styles for basic styling
+    st.markdown("""
+        <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .stButton button {
+            height: 50px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .stButton button:hover {
+            background-color: #e0e0e0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 50px;
+        }
+        .text {
+            text-align: center;
+            font-size: 16px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px auto;
+        }
+        .image-container img {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Konten utama halaman tren harga kopi
+    if "halaman" not in st.session_state or st.session_state["halaman"] == "tren_harga":
+        st.write("<div class='container'><h1 style='text-align: center;'>Prediksi Harga Kopi Arabika</h1></div>", unsafe_allow_html=True)
+        
+        # Tampilkan gambar dengan styling
+        st.write("<div class='image-container'>", unsafe_allow_html=True)
+        img = Image.open('grafik.png')
+        st.image(img, use_column_width=True)
+        st.write("</div>", unsafe_allow_html=True)
+
+        st.write("""
+            <div class='text'>
+                Diagram ini menunjukkan harga kopi Arabika dunia dari April 2020 hingga Mei 2024, serta prediksi harga dari Juni 2024 hingga Mei 2025. Harga yang ditampilkan dalam Rupiah menggunakan nilai tukar 1 USD = Rp 16.486.
+            </div>
+        """, unsafe_allow_html=True)
+
+        # Buat kolom untuk menempatkan tombol di tengah
+        col1, col2, col3 = st.columns([2, 4, 2])
+
+        with col2:
+            if st.button("Lebih Detail"):
+                st.session_state["halaman"] = "detail_harga"
+
+
+def halaman_detail_harga():
     st.sidebar.title("Navigasi")
     if st.sidebar.button("Halaman Utama"):
         st.session_state["halaman"] = "utama"
@@ -116,91 +211,40 @@ def halaman_tren_harga():
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
             border-radius: 12px;
+            background-color: var(--color-background);
+            color: var(--color-primary);
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .stButton button:hover {
+            background-color: var(--color-background-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .footer {
             text-align: center;
             font-size: 14px;
-            color: #555555;
-            margin-top: 50px;
+            color: var(--color-text-secondary);
+            margin-top: 30px; /* Adjusted margin */
         }
         .text {
             text-align: center;
-            font-size: 18px;
-            margin: 10px;
+            font-size: 16px;
+            margin: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
         }
-
-        /* Media query untuk tampilan mobile */
-        @media only screen and (max-width: 600px) {
-            .button-container {
-                flex-direction: column; /* Mengubah tata letak menjadi vertikal */
-            }
-            .stButton button {
-                width: 100%; /* Tombol mengambil lebar penuh dari kolom */
-            }
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # Konten utama halaman tren harga kopi
-    st.write("<h1 style='text-align: center;'>Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
-    img = Image.open("grafik.png")
-    st.image(img, width=500, use_column_width=True, output_format='auto')
-
-    st.write("<h6 style='text-align: center; color: gray; margin-top: 20px; padding: 5px;'>Diagram di atas menampilkan data harga kopi Arabika dunia untuk periode April 2020 hingga Mei 2024, beserta prediksi harga untuk periode Juni 2024 hingga Mei 2025. Harga yang ditampilkan adalah harga kopi Arabika dunia per kilogram dalam Rupiah, dengan asumsi nilai tukar 1 USD = Rp 16.486</h6>", unsafe_allow_html=True)
-
-    # Buat kolom untuk menempatkan tombol di tengah
-    col1, col2, col3 = st.columns([2, 4, 2])
-
-    with col2:
-        if st.button("Lebih Detail"):
-            st.session_state["halaman"] = "detail_harga"
-
-# Fungsi untuk halaman detail harga kopi
-def halaman_detail_harga():
-
-    st.sidebar.title("Navigasi")
-    if st.sidebar.button("Halaman Utama"):
-        st.session_state["halaman"] = "utama"
-    if st.sidebar.button("Tren Harga Kopi"):
-        st.session_state["halaman"] = "tren_harga"
-    if st.sidebar.button("Scan Jenis Kopi"):
-        st.session_state["halaman"] = "scan_kopi"
-    if st.sidebar.button("Informasi Mengenai Kopi"):
-        st.session_state["halaman"] = "info_kopi"
-
-    # Inject CSS styles for button styling and layout adjustments
-    st.markdown("""
-        <style>
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .button-container > div {
-            margin: 0px;
-        }
-        .stButton button {
-            height: 50px;
-            width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            border-radius: 12px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 14px;
-            color: #555555;
-            margin-top: 50px;
-        }
-        .text {
-            text-align: center;
-            font-size: 18px;
-            margin: 10px;
+        .container {
+            background-color: var(--color-background);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px; /* Center and limit width */
         }
 
         /* Media query untuk tampilan mobile */
@@ -216,22 +260,25 @@ def halaman_detail_harga():
     """, unsafe_allow_html=True)
 
     # Konten utama halaman detail harga kopi
-    st.write("<h1 style='text-align: center; color:'>Tabel Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
+    if "halaman" not in st.session_state or st.session_state["halaman"] == "detail_harga":
+        st.write("<div class='container'><h1 style='text-align: center;'>Tabel Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns([1, 2, 1]) 
+        col1, col2, col3 = st.columns([1, 2, 1]) 
 
-    with col2:
-        img = Image.open("tabel prediksi harga.png")
-        st.image(img, width=800, use_column_width=True, output_format='auto')
+        with col2:
+            img = Image.open("tabel prediksi harga.png")
+            st.image(img, width=800, use_column_width=True, output_format='auto')
 
-    # Buat kolom untuk menempatkan tombol di tengah
-    col1, col2, col3 = st.columns([1, 1, 1])
+        # Buat kolom untuk menempatkan tombol di tengah
+        col1, col2, col3 = st.columns([1, 1, 1])
 
-    with col2:
-        if st.button("Kembali ke Menu Utama"):
-            st.session_state["halaman"] = "utama"
+        with col2:
+            if st.button("Kembali ke Menu Utama"):
+                st.session_state["halaman"] = "utama"
+
             
-def halaman_scan_kopi():
+def halaman_scan_kopi() :
+
     def load_tflite_model(model_path):
         interpreter = tf.lite.Interpreter(model_path=model_path)
         interpreter.allocate_tensors()
@@ -239,7 +286,7 @@ def halaman_scan_kopi():
         output_details = interpreter.get_output_details()
         return interpreter, input_details, output_details
 
-    # Load all TensorFlow Lite models for coffee classification
+     # Load all TensorFlow Lite models for coffee classification
     model_nonkopi, input_details_nonkopi, output_details_nonkopi = load_tflite_model("KOPI_NON.tflite")
     model_grade, input_details_grade, output_details_grade = load_tflite_model("GRADE.tflite")
     model_kualitas, input_details_kualitas, output_details_kualitas = load_tflite_model("KUALITAS.tflite")
@@ -376,6 +423,34 @@ def halaman_scan_kopi():
     st.markdown(
         """
         <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container > div {
+            margin: 0px;
+        }
+        .stButton button {
+            height: 50px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+        .css-1v7pvcd, .css-19t32er, .css-10nvh8h {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .css-1v7pvcd img, .css-19t32er img, .css-10nvh8h img {
+            width: 100%;
+            height: auto;
+        }
         .stCamera {
             width: 100% !important;
             height: auto !important;
@@ -388,38 +463,8 @@ def halaman_scan_kopi():
             margin: 0 !important;
             padding: 0 !important;
         }
-        .stCamera img {
-            width: 100% !important;
-            height: auto !important;
-        }
         .stButton button {
-            width: 100% !important;
-            height: auto !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .button-container > div {
-            margin: 0px;
-        }
-        .css-1v7pvcd, .css-19t32er, .css-10nvh8h {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .css-1v7pvcd img, .css-19t32er img, .css-10nvh8h img {
             width: 100%;
-            height: auto;
         }
         </style>
         """,
@@ -455,17 +500,27 @@ def halaman_info_kopi():
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 5px; /* Reduced margin */
+        }
+        .stButton button:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .footer {
             text-align: center;
             font-size: 14px;
             color: #555555;
-            margin-top: 50px;
+            margin-top: 20px; /* Reduced margin */
+            margin-bottom: 20px; /* Reduced margin */
         }
         .text {
             text-align: center;
             font-size: 18px;
-            margin: 10px;
+            margin: 15px; /* Adjusted margin */
+            font-weight: bold;
         }
 
         /* Tombol Instagram */
@@ -480,15 +535,19 @@ def halaman_info_kopi():
             font-size: 16px;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-top: 15px; /* Adjusted margin */
         }
         .instagram-button img {
             width: 30px; /* Atur ukuran ikon Instagram */
             height: 30px; /* Atur ukuran ikon Instagram */
-            margin-right: 20px;
+            margin-right: 10px;
         }
         .instagram-button:hover {
-            background-color: #e1e1e1;
+            background-color: #f0f0f0;
             text-decoration: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         /* Media query untuk tampilan mobile */
@@ -508,7 +567,7 @@ def halaman_info_kopi():
     """, unsafe_allow_html=True)
 
     # Konten utama halaman informasi kopi
-    st.markdown("<div class='text'>Perbedaan antara biji kopi berdasarkan metode pengolahan (washed, natural, natural pulp) dan klasifikasi kualitas (specialty, komersial, premium, asalan) sangat mempengaruhi rasa, kualitas, dan penggunaan kopi tersebut. Berikut penjelasan rinci mengenai masing-masing kategori:</div>", unsafe_allow_html=True)
+    st.markdown("<div class='text'>Metode pengolahan dan klasifikasi kualitas biji kopi memengaruhi rasa dan kualitasnya. Detail:</div>", unsafe_allow_html=True)
 
     # Buat kolom untuk menempatkan tombol di tengah
     col1, col2, col3 = st.columns([3, 1, 3])
@@ -522,7 +581,7 @@ def halaman_info_kopi():
             st.session_state["halaman"] = "klasifikasi_kualitas"
 
     # Footer
-    st.markdown("<h3 class='footer'>Jika Anda ingin mengetahui lebih banyak tentang kopi atau ingin langsung membeli biji kopi, silakan hubungi Bamboos Coffee Processing, koperasi yang menyediakan biji kopi untuk berbagai coffee shop!</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 class='footer'>Untuk informasi lebih lanjut atau membeli biji kopi, hubungi Bamboos Coffee Processing, koperasi penyedia biji kopi untuk coffee shop!</h3>", unsafe_allow_html=True)
 
     # Tombol Instagram
     col1, col2, col3 = st.columns([1, 1, 2])
@@ -538,6 +597,7 @@ def halaman_info_kopi():
             </div>
         </a>
         """, unsafe_allow_html=True)
+
 
 def halaman_klasifikasi_kualitas():
 
