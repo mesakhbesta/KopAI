@@ -18,10 +18,6 @@ st.write(
     """
     <style>
     :root {
-        --primary-color: #FF4B4B;
-        --background-color: #FFF;
-        --secondary-background-color: #F0F2F6;
-        --text-color: #000;
         --font: 'sans serif';
     }
     </style>
@@ -47,7 +43,6 @@ def halaman_utama():
             align-items: center;
             flex-direction: column;
             text-align: center;
-            color: black;
             background-image: url('bg.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
@@ -122,7 +117,6 @@ def halaman_tren_harga():
             justify-content: center;
             align-items: center;
             margin-top: 20px;
-            color: black;
             border-radius: 12px;
         }
         .footer {
@@ -150,7 +144,7 @@ def halaman_tren_harga():
     """, unsafe_allow_html=True)
 
     # Konten utama halaman tren harga kopi
-    st.write("<h1 style='text-align: center; color: black;'>Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
+    st.write("<h1 style='text-align: center;'>Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
     img = Image.open("grafik.png")
     st.image(img, width=500, use_column_width=True, output_format='auto')
 
@@ -195,7 +189,6 @@ def halaman_detail_harga():
             justify-content: center;
             align-items: center;
             margin-top: 20px;
-            color: black;
             border-radius: 12px;
         }
         .footer {
@@ -223,7 +216,7 @@ def halaman_detail_harga():
     """, unsafe_allow_html=True)
 
     # Konten utama halaman detail harga kopi
-    st.write("<h1 style='text-align: center; color: black;'>Tabel Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
+    st.write("<h1 style='text-align: center; color:'>Tabel Prediksi Harga Kopi Arabika</h1>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 2, 1]) 
 
@@ -237,8 +230,8 @@ def halaman_detail_harga():
     with col2:
         if st.button("Kembali ke Menu Utama"):
             st.session_state["halaman"] = "utama"
-def halaman_scan_kopi() :
-
+            
+def halaman_scan_kopi():
     def load_tflite_model(model_path):
         interpreter = tf.lite.Interpreter(model_path=model_path)
         interpreter.allocate_tensors()
@@ -246,7 +239,7 @@ def halaman_scan_kopi() :
         output_details = interpreter.get_output_details()
         return interpreter, input_details, output_details
 
-     # Load all TensorFlow Lite models for coffee classification
+    # Load all TensorFlow Lite models for coffee classification
     model_nonkopi, input_details_nonkopi, output_details_nonkopi = load_tflite_model("KOPI_NON.tflite")
     model_grade, input_details_grade, output_details_grade = load_tflite_model("GRADE.tflite")
     model_kualitas, input_details_kualitas, output_details_kualitas = load_tflite_model("KUALITAS.tflite")
@@ -383,35 +376,6 @@ def halaman_scan_kopi() :
     st.markdown(
         """
         <style>
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .button-container > div {
-            margin: 0px;
-        }
-        .stButton button {
-            height: 50px;
-            width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            color: black;
-            border-radius: 12px;
-        }
-        .css-1v7pvcd, .css-19t32er, .css-10nvh8h {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .css-1v7pvcd img, .css-19t32er img, .css-10nvh8h img {
-            width: 100%;
-            height: auto;
-        }
         .stCamera {
             width: 100% !important;
             height: auto !important;
@@ -424,8 +388,38 @@ def halaman_scan_kopi() :
             margin: 0 !important;
             padding: 0 !important;
         }
+        .stCamera img {
+            width: 100% !important;
+            height: auto !important;
+        }
         .stButton button {
+            width: 100% !important;
+            height: auto !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container > div {
+            margin: 0px;
+        }
+        .css-1v7pvcd, .css-19t32er, .css-10nvh8h {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .css-1v7pvcd img, .css-19t32er img, .css-10nvh8h img {
             width: 100%;
+            height: auto;
         }
         </style>
         """,
@@ -451,15 +445,12 @@ def halaman_info_kopi():
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
             padding: 20px;
             border-radius: 12px;
         }
         .stButton button {
             height: 50px;
             width: 200px;
-            margin: 10px;
-            color: black;
             border-radius: 12px;
             display: flex;
             justify-content: center;
@@ -486,7 +477,6 @@ def halaman_info_kopi():
             padding: 10px;
             width: 200px; /* Atur lebar tombol Instagram */
             text-decoration: none;
-            color: black;
             font-size: 16px;
             justify-content: center;
             align-items: center;
@@ -499,7 +489,6 @@ def halaman_info_kopi():
         .instagram-button:hover {
             background-color: #e1e1e1;
             text-decoration: none;
-            color: black;
         }
 
         /* Media query untuk tampilan mobile */
@@ -558,13 +547,11 @@ def halaman_klasifikasi_kualitas():
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
         }
         .stButton button {
             height: 50px;
             width: 200px;
             margin: 10px;
-            color: black;
             border-radius: 12px;
             display: flex;
             justify-content: center;
@@ -624,13 +611,11 @@ def halaman_metode_pengolahan():
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
         }
         .stButton button {
             height: 50px;
             width: 200px;
             margin: 10px;
-            color: black;
             border-radius: 12px;
             display: flex;
             justify-content: center;
