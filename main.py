@@ -24,7 +24,6 @@ st.write(
     unsafe_allow_html=True
 )
 
-# Fungsi untuk halaman utama aplikasi
 def halaman_utama():
     # Tambahkan judul utama dengan HTML
     st.write("<h1 class='title'>Optimalkan Rantai Pasok Kopi Anda: Identifikasi, Rekomendasi, dan Pantau Harga dengan Aplikasi Kami</h1>", unsafe_allow_html=True)
@@ -59,6 +58,14 @@ def halaman_utama():
         .stButton button {
             height: 50px;
             width: 200px;
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .stButton button:hover {
+            background-color: #e0e0e0; /* Light background on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
         }
 
         /* Media query untuk tampilan mobile */
@@ -91,6 +98,7 @@ def halaman_utama():
         st.write("") 
         if st.button("Informasi Mengenai Kopi"):
             st.session_state["halaman"] = "info_kopi"
+
 
 def halaman_tren_harga():
     st.sidebar.title("Navigasi")
