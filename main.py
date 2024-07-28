@@ -37,20 +37,22 @@ def halaman_utama():
     st.markdown("""
         <style>
         .title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            width: 100%;
             text-align: center;
             background-image: url('bg.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             padding: 20px;
+            color: white;
+            box-sizing: border-box; /* Include padding in the total width */
         }
         .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 100px; /* Adjust margin-top to fit your layout */
         }
         .button-container > div {
             margin: 5px;
@@ -64,9 +66,12 @@ def halaman_utama():
         @media only screen and (max-width: 600px) {
             .title {
                 font-size: 1.5em; /* Menyesuaikan ukuran font pada tampilan mobile */
+                padding: 15px; /* Adjust padding for smaller screens */
+                margin-top: 0; /* Remove margin-top for mobile if needed */
             }
             .button-container {
                 flex-direction: column; /* Mengubah tata letak menjadi vertikal */
+                margin-top: 120px; /* Adjust margin-top for mobile view */
             }
             .stButton button {
                 width: 100%; /* Tombol mengambil lebar penuh dari kolom */
