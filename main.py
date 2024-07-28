@@ -13,7 +13,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Set the theme to light mode directly in the script
 st.write(
     """
     <style>
@@ -41,12 +40,12 @@ def halaman_utama():
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             text-align: center;
             background-image: url('bg.jpg'); 
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            padding: 20px;
         }
         .button-container {
             display: flex;
@@ -63,6 +62,9 @@ def halaman_utama():
 
         /* Media query untuk tampilan mobile */
         @media only screen and (max-width: 600px) {
+            .title {
+                font-size: 1.5em; /* Menyesuaikan ukuran font pada tampilan mobile */
+            }
             .button-container {
                 flex-direction: column; /* Mengubah tata letak menjadi vertikal */
             }
@@ -113,19 +115,13 @@ def halaman_tren_harga():
             justify-content: center;
             align-items: center;
             border-radius: 12px;
-            background-color: #f0f0f0;
-            color: #333;
             font-size: 16px;
             font-weight: bold;
             margin-top: 20px;
         }
-        .stButton button:hover {
-            background-color: #e0e0e0;
-        }
         .footer {
             text-align: center;
             font-size: 14px;
-            color: #555;
             margin-top: 50px;
         }
         .text {
@@ -134,13 +130,10 @@ def halaman_tren_harga():
             margin: 10px;
             padding: 15px;
             border-radius: 8px;
-            background-color: #fafafa;
-            color: #333;
             line-height: 1.6;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .container {
-            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
